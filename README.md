@@ -358,8 +358,70 @@ Tabel 9.1 Tabel hasil running evaluasi model setelah menggunakan *hyperparameter
 | eval_train | 18104561.09466 | 18614533.696279 |
 | eval_test  | 24212812.866265 | 25605704.542962 |
 
-Berikut adalah grafik hasil evaluasi model setelah dilakukan penerapan *hyperparameter*.
-![model_eval_hy_params](https://github.com/adhimkhairilanam/Proyek-Pertama-Machine-Learning-Terapan)
-###### Gambar 9.1 Hasil evaluasi model setelah penerapan *hyperparameter*
-
 *MSE* merupakan metrik evaluasi yang umum digunakan dalam masalah regresi karena memperhitungkan perbedaan antara nilai prediksi dan nilai sebenarnya secara keseluruhan dan memberikan bobot yang lebih besar pada perbedaan yang besar. 
+Namun, *MSE* juga memiliki kelemahan yaitu sensitif terhadap *outlier*, artinya nilai ekstrem yang sangat berbeda dapat mempengaruhi *MSE* secara signifikan. 
+
+Oleh karena itu, terkadang metrik evaluasi alternatif seperti *Mean Absolute Error* (MAE) juga digunakan untuk memberikan gambaran yang lebih lengkap tentang kinerja model.
+
+Berdasarkan hasil evaluasi model setelah menggunakan *hyperparameter*, dapat diambil beberapa kesimpulan:
+
+1. *Mean Squared Error* (*MSE*) - Train Set:
+   - Model *Huber* memiliki *MSE* train set sebesar 18,480,694.56826.
+   - Model *SVR* memiliki *MSE* train set sebesar 40,114,366.684487.
+   - Model *Huber* memiliki nilai *MSE* yang lebih rendah dibandingkan dengan model *SVR* pada data training. Artinya, model Huber mampu melakukan prediksi yang lebih akurat daripada model *SVR*.
+
+2. *Mean Squared Error* (*MSE*) - Test Set:
+   - Model *Huber* memiliki *MSE* test set sebesar 25,177,990.875244.
+   - Model *SVR* memiliki *MSE* test set sebesar 42,742,505.675315.
+   - Model *Huber* juga memiliki nilai *MSE* yang lebih rendah dibandingkan dengan model *SVR* pada data testing. Hal ini menunjukkan bahwa model *Huber* lebih baik dalam melakukan prediksi pada data yang belum pernah dilihat sebelumnya.
+
+3. Evaluation Score (eval) - Train Set:
+   - Model *Huber* memiliki evaluasi score train set sebesar 18,104,561.09466.
+   - Model *SVR* memiliki evaluasi score train set sebesar 18,614,533.696279.
+   - Meskipun model *Huber* memiliki *MSE* yang lebih rendah pada data training, evaluasi score keduanya memiliki perbedaan yang cukup kecil. Kedua model memberikan performa yang serupa pada data training.
+
+4. Evaluation Score (eval) - Test Set:
+   - Model *Huber* memiliki evaluasi score test set sebesar 24,212,812.866265.
+   - Model *SVR* memiliki evaluasi score test set sebesar 25,605,704.542962.
+   - Model *Huber* juga memberikan evaluasi score yang lebih rendah dibandingkan dengan model *SVR* pada data testing. Hal ini menunjukkan bahwa model *Huber* lebih baik dalam melakukan prediksi yang lebih akurat pada data yang belum pernah dilihat sebelumnya.
+
+Berdasarkan kesimpulan di atas, model *Huber* memiliki performa yang lebih baik daripada model *SVR* dalam memprediksi premi asuransi kesehatan. Model *Huber* memiliki *MSE* yang lebih rendah baik pada data training maupun test set, serta memberikan evaluasi score yang lebih baik pada data testing. 
+
+Oleh karena itu, model *Huber* dapat dianggap lebih optimal dalam proyek ini untuk memperkirakan premi asuransi kesehatan dengan tingkat akurasi yang lebih tinggi.
+
+## 10. Kesimpulan 
+Proyek ini berhasil mengembangkan model analisis prediktif menggunakan algoritma Huber yang mampu memprediksi premi asuransi kesehatan dengan tingkat akurasi lebih tinggi dibandingkan model SVR.
+
+Hasil evaluasi menunjukkan bahwa model Huber memiliki nilai MSE yang lebih rendah pada data training maupun data testing, serta skor evaluasi yang lebih baik pada data testing.
+
+Hal ini membuktikan bahwa model Huber mampu memberikan prediksi premi yang lebih tepat, sehingga memberikan manfaat bagi perusahaan asuransi maupun calon pemegang polis.
+
+Manfaat bagi Perusahaan Asuransi:
+
+1. Penentuan premi yang lebih akurat: Model Huber membantu perusahaan asuransi dalam menetapkan premi asuransi kesehatan dengan akurasi yang lebih tinggi, sehingga mengurangi risiko finansial dan meningkatkan efisiensi pengelolaan risiko.
+
+2. Peningkatan transparansi: Dengan mengetahui faktor-faktor utama yang mempengaruhi penetapan premi, perusahaan dapat memberikan penjelasan yang lebih jelas kepada calon pemegang polis mengenai dasar penetapan premi, sehingga meningkatkan transparansi dan kepercayaan.
+
+Manfaat bagi Calon Pemegang Polis:
+
+1. Premi yang adil dan tepat: Model Huber dapat memprediksi premi dengan lebih adil dan sesuai dengan faktor risiko yang ada, memastikan premi yang dibayar sesuai dengan risiko yang dihadapi.
+
+2. Pemahaman yang lebih baik: Dengan penjelasan yang lebih rinci terkait faktor-faktor penentu premi, calon pemegang polis dapat memperoleh pemahaman yang lebih mendalam mengenai alasan di balik nilai premi yang diterima.
+
+Langkah Tindak Lanjut:
+
+1. Implementasi model: Model Huber yang telah dikembangkan dapat diterapkan langsung oleh perusahaan asuransi dalam proses penentuan premi asuransi kesehatan.
+
+2. Pengayaan data dan pemeliharaan model: Perusahaan asuransi disarankan untuk terus memperbarui dan memperkaya data yang digunakan, serta melakukan pemeliharaan dan pembaruan model secara berkala.
+
+3. Evaluasi dan peningkatan berkelanjutan: Kinerja model perlu terus dievaluasi secara rutin, dengan perbaikan atau pengembangan lebih lanjut agar prediksi premi semakin akurat dan efektif.
+
+Dengan menerapkan langkah-langkah tersebut, perusahaan asuransi dapat memanfaatkan model analisis prediktif ini guna meningkatkan ketepatan penetapan premi, memperkuat transparansi, dan memberikan manfaat optimal bagi calon pemegang polis dalam pengalaman asuransi kesehatan mereka.
+
+## References: 
+
+Artiga, S., Ubri, P., & Zur, J. (2017). The Effects of Premiums and Cost Sharing on Low-Income Populations: Updated Review of Research Findings. Issue Brief.
+
+Chauluka, M., Uzochukwu, B., & Chinkhumba, J. (2022). Factors Associated With Coverage of Health Insurance Among Women in Malawi. Frontiers in Health Services, 2, 2022.
+
+Chernew, M., Cutler, D. M., & Keenan, P. S. (2005). Increasing Health Insurance Costs and the Decline in Insurance Coverage. Health Services Research, 40(10.1111).
