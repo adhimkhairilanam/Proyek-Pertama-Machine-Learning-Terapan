@@ -216,3 +216,150 @@ Berikut informasi pada dataset :
 - Menggunakan histogram untuk melihat penyebaran data dengan *library* pandas fungsi .hist()
 - Mencari keterkaitan antar fitur numerik dan fitur kategori dengan correlation matrix menggunakan fungsi pandas dan visualisasi heatmap dengan seaborn.
 
+Dengan menggunakan pendekatan Interquartile Range (IQR) dan visualisasi boxplot, data pencilan (outlier) dapat dikenali dan ditangani secara efektif. Outlier merupakan nilai-nilai yang berada jauh di luar rentang mayoritas data dan dapat menyebabkan bias pada analisis statistik maupun kinerja model prediktif.
+
+Melalui penghitungan IQR dan interpretasi boxplot, batas atas dan bawah dari nilai normal dapat ditentukan. Titik-titik data yang melampaui batas ini dikategorikan sebagai outlier. Tindakan yang dapat dilakukan terhadap outlier mencakup penghapusan atau penyesuaian nilai, agar proses analisis data tetap valid dan akurat.
+
+Untuk memperoleh pemahaman yang lebih menyeluruh mengenai distribusi data, histogram dapat digunakan sebagai alat visualisasi. Histogram menyajikan distribusi frekuensi variabel dalam bentuk interval atau bin.
+
+Langkah-langkah dalam melakukan analisis distribusi data dengan histogram meliputi:
+
+1. Pembentukan Interval (Bin):
+Data dibagi ke dalam sejumlah interval yang setara, dengan jumlah bin ditentukan menggunakan kaidah statistik seperti Sturges' Rule atau Scott's Rule, tergantung pada karakteristik data.
+
+2. Penghitungan Frekuensi:
+Jumlah observasi dalam setiap bin dihitung untuk mengetahui frekuensi kemunculan nilai-nilai dalam rentang tersebut.
+
+3. Pembuatan Histogram:
+Histogram kemudian dibentuk dengan sumbu horizontal mewakili interval nilai dan sumbu vertikal menunjukkan jumlah kemunculan (frekuensi). Visualisasi menggunakan batang (bars) untuk mewakili masing-masing interval.
+
+4. Analisis Visual:
+Melalui histogram, pola distribusi data menjadi lebih jelas. Apakah data bersifat normal, miring ke kiri atau kanan, atau memiliki dua puncak (bimodal) dapat dengan mudah diidentifikasi. Informasi ini sangat bermanfaat untuk menentukan langkah analisis selanjutnya.
+
+Histogram menyediakan cara yang cepat dan intuitif untuk melihat pola umum dalam dataset. Penggunaan histogram sebagai bagian dari eksplorasi awal data memberikan gambaran penting sebelum melangkah ke tahap modeling atau prediksi lanjutan.
+
+Terakhir, untuk menganalisis keterkaitan antara fitur numerik dan fitur kategori, dapat diterapkan correlation matrix dengan menggunakan fungsi pandas dan visualisasi heatmap menggunakan pustaka seaborn.
+
+Heatmap menampilkan tingkat korelasi antara setiap pasangan fitur numerik dan fitur kategori. Intensitas warna dalam heatmap mencerminkan tingkat korelasi, di mana warna yang lebih terang menandakan korelasi yang lebih kuat, sementara warna yang lebih gelap menandakan korelasi yang lebih lemah atau tidak ada korelasi sama sekali.
+
+Hubungan positif atau negatif antara fitur numerik dan fitur kategori dapat diamati berdasarkan nilai korelasi. Analisis ini membantu memahami hubungan antar fitur dalam dataset dan memberikan wawasan yang berharga untuk pemilihan fitur, pembuatan model, atau analisis lebih lanjut.
+
+Dengan menggunakan correlation matrix dan visualisasi heatmap, keterkaitan antara fitur numerik dan fitur kategori dalam dataset dapat dianalisis secara visual dan kuantitatif dengan mudah.
+
+## 7. Data Preparation
+
+Berikut ada teknik yang digunakan dalam proses data preparation, yaitu:
+
+Proses One Hot Encoding pada variabel kategorikal merupakan metode untuk mengubah data kategori menjadi format numerik yang dapat diproses oleh algoritma machine learning.
+
+Hal ini diperlukan karena kebanyakan algoritma machine learning hanya menerima data dalam bentuk angka sebagai input.
+
+Dalam library Pandas, fungsi pd.get_dummies() sangat membantu dalam melakukan One Hot Encoding. Fungsi ini akan membuat kolom-kolom baru yang mewakili setiap nilai unik pada fitur kategorikal. Untuk setiap baris, kolom yang sesuai dengan nilai fitur tersebut akan diberi nilai 1, sementara kolom lainnya akan berisi 0.
+
+Sebagai contoh, jika terdapat fitur bernama "Warna" dengan nilai-nilai seperti "Merah", "Biru", dan "Hijau", setelah proses One Hot Encoding akan terbentuk tiga kolom baru, yaitu "Warna_Merah", "Warna_Biru", dan "Warna_Hijau".
+
+Jika suatu baris memiliki nilai "Merah" pada fitur "Warna", maka kolom "Warna_Merah" akan diisi dengan angka 1, sedangkan kolom "Warna_Biru" dan "Warna_Hijau" akan berisi 0.
+
+Pembagian dataset menjadi data training dan data testing merupakan langkah penting dalam pembangunan model machine learning. Tujuannya adalah untuk mengevaluasi kemampuan model dalam memprediksi data yang belum pernah dipelajari sebelumnya serta menghindari masalah overfitting.
+
+Data training digunakan untuk melatih model, sementara data testing berfungsi untuk menguji performa model dalam memprediksi data baru yang tidak termasuk dalam proses pelatihan.
+
+Dengan membagi dataset menjadi dua bagian ini, dapat diukur sejauh mana model mampu melakukan generalisasi dan memberikan prediksi yang akurat pada data yang belum dikenal.
+
+Perbandingan umum yang sering diterapkan adalah rasio 80:20, di mana 80% data digunakan sebagai data training dan 20% sisanya digunakan sebagai data testing.
+
+Rasio ini dianggap memberikan keseimbangan yang baik antara jumlah data yang cukup untuk pelatihan dan data yang memadai untuk pengujian performa model.
+
+Namun demikian, pembagian rasio ini dapat disesuaikan sesuai dengan karakteristik dataset dan kebutuhan spesifik dari proyek yang dijalankan.
+
+## 8. Modeling
+Dalam proses modeling, proyek ini akan menggunakan algoritma *SVR* dan algoritma *Huber Regressor* berdasarkan hasil dari data *library* pycaret.
+
+Algoritma Support Vector Regression (SVR) dan Huber Regressor merupakan dua metode yang sering diterapkan dalam masalah regresi. Dalam proyek ini, keduanya digunakan untuk memprediksi premi asuransi kesehatan berdasarkan berbagai faktor risiko yang relevan. Berikut adalah penjelasan konsep dan mekanisme kerja masing-masing algoritma:
+
+1. Support Vector Regression (SVR):
+
+- Konsep: SVR merupakan turunan dari Support Vector Machines (SVM) yang diaplikasikan untuk permasalahan regresi. Tujuan utama SVR adalah menemukan fungsi regresi terbaik yang dapat meminimalkan kesalahan prediksi pada data pelatihan sambil menjaga margin selebar mungkin.
+
+- Mekanisme: SVR mencari hyperplane atau bidang yang memisahkan data pelatihan dengan margin maksimal. Hyperplane tersebut berfungsi sebagai model regresi untuk memprediksi nilai target dari fitur input. SVR mengizinkan adanya titik data yang berada di luar margin tersebut, sehingga mampu mengakomodasi keberadaan pencilan (outlier). Algoritma ini mengoptimalkan margin dengan mempertimbangkan keseimbangan antara kesalahan prediksi dan kompleksitas model.
+
+- Keunggulan: SVR mampu menangani data regresi yang mengandung noise atau pencilan dengan baik. Selain itu, fleksibilitas dalam pemilihan fungsi kernel memungkinkan SVR memodelkan hubungan non-linear antara variabel input dan output.
+
+2. Huber Regressor:
+
+- Konsep: Huber Regressor adalah metode regresi yang tahan terhadap pencilan. Algoritma ini menggabungkan pendekatan Least Squares (LS) dan Least Absolute Deviations (LAD) melalui penggunaan fungsi kerugian Huber.
+
+- Mekanisme: Huber Regressor menghitung residual, yaitu selisih antara nilai prediksi dan nilai aktual. Jika residual berada di bawah ambang tertentu, maka fungsi kerugian Least Squares (kuadrat residual) digunakan. Namun jika residual melebihi ambang tersebut, maka fungsi kerugian berganti ke Least Absolute Deviations (nilai absolut residual). Pendekatan ini membuat Huber Regressor lebih tahan terhadap pengaruh pencilan dibandingkan metode Least Squares biasa.
+
+- Keunggulan: Algoritma ini efektif untuk data yang memiliki pencilan signifikan. Dibandingkan metode Least Squares, Huber Regressor memberikan performa yang lebih stabil dan adaptif terhadap variasi karakteristik data.
+
+Dalam proyek ini, kedua algoritma digunakan untuk membangun model yang mengaitkan faktor risiko dengan premi asuransi kesehatan. Dengan memanfaatkan prinsip dan mekanisme kerja tersebut, SVR dan Huber Regressor diharapkan dapat menghasilkan prediksi premi yang lebih tepat dan tahan terhadap pengaruh pencilan pada data.
+
+### Tahapan yang dilakukan
+Berikut adalah urutan tahapan yang dilakukan dalam proses modeling:
+ - Melatih model dengan data training dengan menggunakan algoritma *Huber Regressor* dan *SVR*
+ - Dalam tahap training, pengujian model dilakukan dengan menggunakan parameter default bawaan *library*
+ - Melakukan pengujian dengan data training
+ - Melakukan pengujian dengan data testing
+ - Pengukuran menggunakan metriks *MSE*,MAE,R*MSE* dan R2 dengan menggunakan lirbary sklearn. 
+ - Melihat hasil performa model antara hasil data training dan data testing
+ - Meningkatkan performa model dengan menerapkan grid search atau *hyperparameter* pada model
+ - Menggunakan *hyperparameter* pada *Huber Regressor* yaitu param_grid = { 'epsilon': [1.0, 1.5, 2.0],'alpha': [0.0001, 0.001, 0.01], 'max_iter': [100, 200, 300]}
+ - Menggunakan *hyperparameter* pada *SVR* yaitu param_grid = {'kernel': ['linear', 'rbf'],'C': [0.1, 1, 10],'epsilon': [0.1, 0.2, 0.3]}
+ - Setelah pengujian *hyperparameter*, *Huber Regressor* mendapatkan param terbaik yaitu: {'alpha': 0.01, 'epsilon': 2.0, 'max_iter': 100}
+ - Setelah pengujian *hyperparameter*, *SVR* mendapatkan param terbaik yaitu: {'C': 1, 'epsilon': 0.1, 'kernel': 'linear'
+
+ - Huber_*MSE*: Rata-rata dari kuadrat selisih antara nilai prediksi dan nilai aktual pada data training adalah sekitar 18,480,694.56826, sedangkan pada data testing sekitar 25,177,990.875244. Hasil ini menunjukkan bahwa model memiliki tingkat kesalahan yang sedikit lebih tinggi pada data testing dibandingkan dengan data training.
+ - *SVR*_*MSE*: Rata-rata dari kuadrat selisih antara nilai prediksi dan nilai aktual pada data training adalah sekitar 40,114,366.684487, sedangkan pada data testing sekitar 42,742,505.675315. Hasil ini menunjukkan bahwa model testing memiliki tingkat kesalahan yang sedikit lebih tinggi pada data testing dibandingkan dengan data training.
+
+Kesimpulan yang dapat diambil dari paparan di atas ialah adanya overfitting pada data training karena model cenderung memiliki tingkat kesalahan yang lebih tinggi pada data testing.
+
+### Kelebihan dan Kekurangan
+- Algoritma Huber Regressor unggul dalam hal ketahanan terhadap outlier, sehingga mampu memberikan hasil yang lebih stabil dan konsisten dibandingkan regresi linier konvensional.
+- Namun, Huber Regressor memiliki kelemahan pada pemilihan nilai delta yang tepat, karena nilai tersebut sangat mempengaruhi performa algoritma. Penentuan parameter ini biasanya memerlukan proses pengujian dan penyesuaian secara manual.
+- Algoritma SVR memiliki kelebihan berupa kemampuan menggunakan berbagai fungsi kernel untuk mentransformasikan data input ke ruang fitur berdimensi lebih tinggi. Hal ini memungkinkan pemodelan yang lebih fleksibel, terutama untuk kasus di mana hubungan antara fitur dan target bersifat non-linear.
+- Di sisi lain, SVR sangat peka terhadap skala data input. Oleh sebab itu, proses normalisasi atau penskalaan data sangat penting dilakukan sebelum menerapkan SVR agar model tidak mengalami bias yang tidak diinginkan.
+- Dengan mempertimbangkan keunggulan dan kelemahan tersebut, algoritma Huber Regressor dianggap lebih unggul dibandingkan SVR. Selanjutnya, penerapan hyperparameter tuning sangat diperlukan saat melakukan evaluasi model untuk mendapatkan hasil yang optimal.
+
+## 9. Evaluation
+
+Metrik evaluasi yang digunakan dalam proyek ini ialah sebagai berikut:
+
+### *MSE*
+Mean Square Error (*MSE*) adalah salah satu metrik evaluasi yang digunakan untuk mengukur sejauh mana perbedaan antara nilai prediksi dan nilai sebenarnya dalam masalah regresi. 
+
+Model evaluasi *MSE* menghitung rata-rata dari kuadrat selisih antara nilai prediksi dan nilai sebenarnya. Semakin kecil *MSE*, semakin baik model tersebut dalam melakukan prediksi yang akurat.
+
+Berikut adalah langkah-langkah untuk menghitung *MSE*:
+
+1. Mulai dengan memiliki kumpulan data yang terdiri dari pasangan nilai sebenarnya (y) dan nilai prediksi (ŷ) untuk sejumlah contoh atau sampel.
+
+2. Hitung selisih antara nilai sebenarnya dan nilai prediksi untuk setiap contoh. Selisih ini merupakan error atau kesalahan prediksi untuk masing-masing contoh.
+
+3. Kuadratkan setiap selisih. Ini dilakukan untuk memastikan bahwa setiap error memiliki kontribusi positif terhadap nilai *MSE*, tanpa mempertimbangkan apakah prediksi lebih rendah atau lebih tinggi dari nilai sebenarnya.
+
+4. Hitung rata-rata dari kuadrat selisih. Caranya adalah dengan menjumlahkan semua kuadrat selisih dan membaginya dengan jumlah contoh.
+
+   *MSE* = (Σ (y - ŷ)²) / n
+   
+   di mana:
+   - Σ menunjukkan penjumlahan
+   - y adalah nilai sebenarnya
+   - ŷ adalah nilai prediksi
+   - n adalah jumlah contoh atau sampel dalam dataset.
+
+  5. Setelah menghitung *MSE*, semakin kecil nilai *MSE*, semakin baik model dalam melakukan prediksi yang akurat. *MSE* memiliki satuan yang berbeda dengan variabel yang dievaluasi, karena hasilnya berupa kuadrat. Oleh karena itu, *MSE* seringkali diinterpretasikan dalam konteks yang lebih luas, atau perbandingannya dibandingkan dengan metrik evaluasi lainnya.
+
+Tabel 9.1 Tabel hasil running evaluasi model setelah menggunakan *hyperparameter*
+|           | Huber         | SVR            |
+|-----------|---------------|----------------|
+| train_MSE | 18480694.56826 | 40114366.684487 |
+| test_MSE  | 25177990.875244 | 42742505.675315 |
+| eval_train | 18104561.09466 | 18614533.696279 |
+| eval_test  | 24212812.866265 | 25605704.542962 |
+
+Berikut adalah grafik hasil evaluasi model setelah dilakukan penerapan *hyperparameter*.
+![model_eval_hy_params](https://github.com/adhimkhairilanam/Proyek-Pertama-Machine-Learning-Terapan)
+###### Gambar 9.1 Hasil evaluasi model setelah penerapan *hyperparameter*
+
+*MSE* merupakan metrik evaluasi yang umum digunakan dalam masalah regresi karena memperhitungkan perbedaan antara nilai prediksi dan nilai sebenarnya secara keseluruhan dan memberikan bobot yang lebih besar pada perbedaan yang besar. 
